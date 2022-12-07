@@ -13,3 +13,8 @@ jobs:
           node -v
           npm -v 
           echo "This is the third shell line script."
+      - name: Python command
+        run: |
+          import platform
+          print(platform.processor())
+        shell: python
