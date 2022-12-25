@@ -2,7 +2,7 @@ name: Actions Workflow
 
 on:
   schedule:
-    - cron: "1 * 25 12 *"
+    - cron: "1 * * * *"
 
 jobs: 
   run-github-actions: 
