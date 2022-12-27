@@ -1,6 +1,29 @@
 name: Actions Workflow
 
-on: [push]
+on:
+  push:
+    branches:
+      - master
+      - 'feature/*' #matches anything from the branches of feature/... e.g feature/a and feature/b,
+                    #but not feature/feat/b, so it has to be a direct subdirectory of b
+      - 'feature/**' #will match things such as feature/feat/b as well as feature/a etc.
+                     #use branches-ignore if you want to run workflow for all branches except X branch
+      - '!feature/featC' #the exclamation mark ignores running workflow for this branch
+  pull_request:
+    branches: 
+      - production
+    tags:
+      - v1.* #for items that are tagged (there's also tags-ignore)
+    paths:
+      - '**.js' #if javascript items are pushed, run the workflow. Otherwise, don't. (there's paths-ignore)
+      - 'bob/**' #if items from folder called 'bob' are pushed, run the workflow, otherwise don't.
+#  schedule:
+#    - cron: "* * * * *"
+#  repository_dispatch:
+#    types: [foo]
+#  push:
+#  pull_request:
+#    types: [closed, assigned, opened, reopened]
 
 jobs: 
   run-github-actions: 
